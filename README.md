@@ -22,22 +22,41 @@ This shell script provides a convenient way to download audio and video files fr
 
     To use the script, follow these steps:
 
-    1. Open a terminal.
+    1. Clone the repository or download the shell script.
     2. Navigate to the directory where the script is located.
     3. Make the script executable by running: `chmod +x script.sh`
     4. Run the script by executing: `./script.sh`
     5. Follow the prompts and provide the required inputs as described in the script.
 
 * ## Examples
+    - Download audio by providing the URL interactively:
+      ```bash
+      $ ./script.sh --audio
+      ```
+    
+    - Download video by providing the URL interactively:
+      ```bash
+      $ ./script.sh --video
+      ```
+    
+    - Download audio using a specific URL:
+      ```bash
+      $ ./script.sh --url <url> --audio
+      ```
+    
+    - Download video using a specific URL and choose the desired format interactively:
+      ```bash
+      $ ./script.sh --url <url> --video
+      ```
 
-    **Example 1:** Download video:
+    **Interactively:** Download video:
 
     ```bash
     $ ./script.sh
     ```
     ![example image of downloading a video on youtube using the script](https://github.com/mr-alham/projects-of-alham/blob/main/private/Audio_Video-downloader-bash-script(1).png)
 
-    **Example 2:** Download audio:
+    **Interactively:** Download audio:
 
     ```bash
     $ ./script.sh
@@ -58,4 +77,7 @@ This shell script provides a convenient way to download audio and video files fr
     5. Reload the shell configuration by running: `source ~/.bashrc` (or `source ~/.bash_profile`).
     6. You can now use the script by simply typing `downloader` in the terminal.
 * ## Contact me
-   For any further assistance or inquiries, please feel free to contact me at [alham@duck.com](mailto:alham@duck.com).
+   For any further assistance or inquiries, please feel free to contact me at,
+    - ALHAM
+    - Twitter: [@alham__aa](https://www.twitter.com/@alham__aa)
+    - Email: alham@duck.com
