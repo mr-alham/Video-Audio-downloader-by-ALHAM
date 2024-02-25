@@ -12,7 +12,7 @@ This shell script provides a convenient way to download audio and video files fr
         * [https://github.com/yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp/wiki/Installation)
 
     - ### `xclip`
-      A command-line utility that can be used to copy and paste text and files to and from the X clipboard.
+      A command-line utility that can be used to copy and paste text and files to and from the clipboard.
         - ```bash
           $ sudo apt install xclip
           ```
@@ -28,27 +28,54 @@ This shell script provides a convenient way to download audio and video files fr
     4. Run the script by executing: `./script.sh`
     5. Follow the prompts and provide the required inputs as described in the script.
 
-* ## Examples
+* ## Description
     - Download audio by providing the URL interactively:
       ```bash
       $ ./script.sh --audio
+      $ ./script.sh -A
       ```
-    
+      
     - Download video by providing the URL interactively:
       ```bash
       $ ./script.sh --video
-      ```
-    
-    - Download audio using a specific URL:
-      ```bash
-      $ ./script.sh --url <url> --audio
-      ```
-    
-    - Download video using a specific URL and choose the desired format interactively:
-      ```bash
-      $ ./script.sh --url <url> --video
+      $ ./script.sh -V
       ```
 
+    - Download video using the best quality:
+      ```bash
+      $ ./script.sh --video-best
+      $ ./script.sh -Vb
+      ```
+    
+    - Provied the URL for download:
+      ```bash
+      $ ./script.sh --url <url>
+      $ ./script.sh -u <url>
+      ```
+
+    - Show help menu:
+      ```bash
+      $ ./script.sh --help
+      $ ./script.sh -h
+      ```
+      
+* ## Usage
+    - Some example how the script can be used.
+      ```bash
+      $ ./script.sh --audio --url <url>
+      $ ./script.sh -A -u <url>
+  
+      $ ./script.sh --video --url <url>
+      $ ./script.sh -V -u <url>
+  
+      $ ./script.sh -video-best --url <url>
+      $ ./script.sh -Vb -u <url>
+  
+      $ ./script.sh -help
+      ```  
+* ## Screenshots
+  **Note:** I haven't updated the screenshots for the final code revision.
+  
     **Interactively:** Download video:
 
     ```bash
