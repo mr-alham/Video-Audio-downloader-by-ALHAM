@@ -222,7 +222,7 @@ notification(){
     local title="Download Complete...!"
     local message="$1" # message of notification (in here the tittle of the song)
     local app_name="ALHAM"
-    local icon_path="/opt/alham_scripts/bash_scripts/Audio-Video-Downloader-by-ALHAM/file_download_done_FILL0_wght700_GRAD0_opsz48.svg"
+    local icon_path="/opt/alham_scripts/bash_scripts/Audio-Video-Downloader-by-ALHAM/done.svg"
 
     # Display the notification
     notify-send "$title" "<i>$message</i>" \
