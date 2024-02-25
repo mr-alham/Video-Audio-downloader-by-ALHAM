@@ -70,8 +70,6 @@ This shell script provides a convenient way to download audio and video files fr
   
       $ ./script.sh -video-best --url <url>
       $ ./script.sh -Vb -u <url>
-  
-      $ ./script.sh -help
       ```  
 * ## Screenshots
   **Note:** I haven't updated the screenshots for the final code revision.
