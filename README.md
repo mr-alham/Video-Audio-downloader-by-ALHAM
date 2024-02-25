@@ -16,6 +16,11 @@ This shell script provides a convenient way to download audio and video files fr
         - ```bash
           $ sudo apt install xclip
           ```
+      For Arch/Manjaro linux users
+        - ```bash
+          $ sudo pacman -S xclip
+          ```
+          
         * [https://github.com/astrand/xclip](https://github.com/astrand/xclip)
 
 * ## How to use
