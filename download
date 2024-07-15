@@ -16,17 +16,12 @@ bold='\033[1m'
 underlined='\033[4m'
 italic='\033[3m'
 
-# Set the path where you want to save downloaded files
-download_path="${HOME}/Downloads/Audio-Video-downloader-by-alham"
-if ! [[ -d "${download_path}" ]]; then
-    exit_code=$?
-    log "download_path does not exist, creating ${download_path}"
-    mkdir -p "${download_path}"
-fi
-
 # download_path="/tmp/audio-video-downloader-by-alham/"
-log_file="/var/log/Audio-Video-Downloader-by-ALHAM.log"
+log_file="/var/log/Audio-Video-Downloader.log"
 temp_log_file='/tmp/audio-video-downloader-by-alham.log'
+
+# Set the path where you want to save downloaded files
+download_path="${HOME}/Downloads/Audio-Video-downloader"
 
 error() {
   case $1 in
@@ -42,18 +37,33 @@ error() {
   esac
 }
 
+log() {
+    # Logging the argument as a string with timestamps
+    error_meaning=$(error ${exit_code})
+    echo -e "$(date '+%I:%M:%S%p | %d/%b/%y') ${error_meaning}: ${1}" >> "${log_file}"
+}
+
+if ! [[ -d "${download_path}" ]]; then
+    mkdir -p "${download_path}"
+    exit_code=$?
+    log "download_path does not exist, created \"${download_path}\""
+fi
+
+if ! [[ -d "${log_file}" ]]; then
+    echo -e "\nlog_file does not exist, To create a new one type sudo password when asked\n"
+    sudo touch "${log_file}" && \
+    sudo chown ${USER}:${USER} "${log_file}"
+
+    exit_code=$?
+    log "Log file does not exist, created \"${download_path}\""
+fi
+
 termination() {
     log "Terminating the script..."
     echo -e "\n${red}Terminating the script...${reset}"
     exit_code=$?
     log "done...\n"
     exit 0
-}
-
-log() {
-    # Logging the argument as a string with timestamps
-    error_meaning=$(error ${exit_code})
-    echo -e "$(date '+%I:%M:%S%p | %d/%b/%y') ${error_meaning}: ${1}" >> "${log_file}"
 }
 
 validate_url() {
