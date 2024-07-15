@@ -17,7 +17,7 @@ underlined='\033[4m'
 italic='\033[3m'
 
 # Set the path where you want to save downloaded files
-download_path="${HOME}/Downloads/Audio-Video-downloader-by-alham"
+download_path="${HOME}/Downloads/Audio-Video-downloader"
 if ! [[ -d "${download_path}" ]]; then
     exit_code=$?
     log "download_path does not exist, creating ${download_path}"
