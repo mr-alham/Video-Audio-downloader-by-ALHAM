@@ -16,17 +16,25 @@ bold='\033[1m'
 underlined='\033[4m'
 italic='\033[3m'
 
+# download_path="/tmp/audio-video-downloader-by-alham/"
+log_file="/var/log/Audio-Video-Downloader.log"
+temp_log_file='/tmp/audio-video-downloader-by-alham.log'
+
 # Set the path where you want to save downloaded files
 download_path="${HOME}/Downloads/Audio-Video-downloader"
+
 if ! [[ -d "${download_path}" ]]; then
-    exit_code=$?
-    log "download_path does not exist, creating ${download_path}"
     mkdir -p "${download_path}"
+    exit_code=$?
+    log "download_path does not exist, created \"${download_path}\""
 fi
 
-# download_path="/tmp/audio-video-downloader-by-alham/"
-log_file="/var/log/Audio-Video-Downloader-by-ALHAM.log"
-temp_log_file='/tmp/audio-video-downloader-by-alham.log'
+if ! [[ -d "${log_file}" ]]; then
+    echo -e "\nlog_file does not exist, To create a new one type sudo password when asked\n"
+    sudo mkdir -p "${log_file}" && chown ${USER}:${USER} "${log_file}"
+    exit_code=$?
+    log "Log file does not exist, created \"${download_path}\""
+fi
 
 error() {
   case $1 in
