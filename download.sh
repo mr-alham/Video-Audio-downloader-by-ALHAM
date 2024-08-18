@@ -49,7 +49,7 @@ if ! [[ -d "${download_path}" ]]; then
     log "download_path does not exist, created \"${download_path}\""
 fi
 
-if ! [[ -d "${log_file}" ]]; then
+if ! [[ -f "${log_file}" ]]; then
     echo -e "\nlog_file does not exist, To create a new one type sudo password when asked\n"
     sudo touch "${log_file}" && \
     sudo chown ${USER}:${USER} "${log_file}"
@@ -403,6 +403,97 @@ download_video() {
     exit 0
 }
 
+install() {
+    # install required dependencies automatically
+    # Get the distribution ID from /etc/os-release
+    source /etc/os-release
+
+    # Determine the package manager based on the ID
+    case "$ID" in
+        ubuntu|debian|linuxmint)
+            echo -e "\nsudo apt install xclip"
+            sudo apt install xclip
+            ;;
+        fedora|centos|rhel)
+            echo -e "\nsudo dnf install xclip"
+            sudo dnf install xclip
+            ;;
+        arch|manjaro|garuda)
+            echo -e "\nsudo pacman -S xclip"
+            sudo pacman -S xclip
+            ;;
+        *)
+            echo -e "\nCould not determine the likely package manager."
+            echo "Install 'xclip' manually"
+            ;;
+    esac
+
+    echo -e "\n python3 -m pip install -U yt-dlp"
+    python3 -m pip install -U yt-dlp
+
+}
+
+handle_arguments() {
+    # If an argument has a URL, get the URL from the arguments
+    url_flag=false
+
+    for arg in "$@"; do
+        if [ ${url_flag} == true ]; then
+            url=${arg}
+            url_flag=false
+            break
+        fi
+
+        if [[ ${arg} == "--url" ]] || [[ ${arg} == "-u" ]]; then
+            log "script.sh ${arg}"
+            url_flag=true
+        fi
+    done
+
+    # Check if arguments are specified
+    for arg in "$@"; do
+        video_best_flag=false
+
+        if [ "${arg}" = "--log" ]; then
+            exit_code=$?
+            log "script.sh --log"
+            tail -n 20 "${log_file}"
+            log "done...\n"
+
+        elif [ "${arg}" = "--video-best" ] || [ ${arg} = "-Vb" ]; then
+            log "script.sh ${arg}"
+            video_best_flag=true
+            download_video
+
+        elif [ "${arg}" = "--video" ] || [ "${arg}" = "-V" ]; then
+            exit_code=$?
+            log "script.sh ${arg}"
+            download_video
+
+        elif [ "${arg}" = "--audio" ] || [ "${arg}" = "-A" ]; then
+            exit_code=$?
+            log "script.sh ${arg}"
+            download_audio
+
+        elif [ "${arg}" == "--help" ] || [ "${arg}" == "-h" ]; then
+            exit_code=$?
+            log "script.sh ${arg}"
+            help
+
+        elif [ "${arg}" == "--install" ]; then
+        echo "install"
+            exit_code=$?
+            log "script.sh ${arg}"
+            install
+
+        else
+            exit_code=$?
+            log "Maybe an invalid argument, accessing default"
+            default
+        fi
+    done
+}
+
 welcome() {
     exit_code=$?
     trap termination SIGINT SIGTERM SIGKILL SIGSEGV SIGHUP
@@ -426,59 +517,10 @@ welcome() {
     echo -en "${bold}${yellow}${underlined}"
     printf "%*s%s%*s\n" "${padding}" "" "${text}" "${padding}" ""
 
+    echo -e "\033[0m"
     # Checking if there are any arguments
     if [ $# -gt 0 ]; then
-        # If an argument has a URL, get the URL from the arguments
-        url_flag=false
-
-        for arg in "$@"; do
-            if [ ${url_flag} == true ]; then
-                url=${arg}
-                url_flag=false
-                break
-            fi
-
-            if [[ ${arg} == "--url" ]] || [[ ${arg} == "-u" ]]; then
-                log "script.sh ${arg}"
-                url_flag=true
-            fi
-        done
-
-        # Check if arguments are specified
-        for arg in "$@"; do
-            video_best_flag=false
-            if [ "${arg}" = "--log" ]; then
-                exit_code=$?
-                log "script.sh --log"
-                cat "${log_file}"
-                log "done...\n"
-
-            elif [ "${arg}" = "--video-best" ] || [ ${arg} = "-Vb" ]; then
-                log "script.sh ${arg}"
-                video_best_flag=true
-                download_video
-
-            elif [ "${arg}" = "--video" ] || [ "${arg}" = "-V" ]; then
-                exit_code=$?
-                log "script.sh ${arg}"
-                download_video
-
-            elif [ "${arg}" = "--audio" ] || [ "${arg}" = "-A" ]; then
-                exit_code=$?
-                log "script.sh ${arg}"
-                download_audio
-
-            elif [ "${arg}" == "--help" ] || [ "${arg}" == "-h" ]; then
-                exit_code=$?
-                log "script.sh ${arg}"
-                help
-
-            else
-                exit_code=$?
-                log "Maybe an invalid argument, accessing default"
-                default
-            fi
-        done
+        handle_arguments $@
     else
         default
     fi
