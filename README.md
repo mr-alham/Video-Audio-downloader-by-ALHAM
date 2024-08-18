@@ -35,7 +35,7 @@ This shell script provides a convenient way to download audio and video files fr
 Simplest method to download and install the script
 
 ```bash
-curl -o Video-Audio-Downloader-install.sh download https://raw.githubusercontent.com/mr-alham/Video-Audio-downloader-by-ALHAM/main/install.sh
+curl -o Video-Audio-Downloader-install.sh https://raw.githubusercontent.com/mr-alham/Video-Audio-downloader-by-ALHAM/main/install.sh
 
 bash Video-Audio-Downloader-install.sh
 ```
