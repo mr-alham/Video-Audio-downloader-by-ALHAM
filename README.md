@@ -4,29 +4,52 @@ This shell script provides a convenient way to download audio and video files fr
 
 ## Requirements
 
-    - ### `yt-dlp`
-      A command-line program to download videos and audios from YouTube and other sites. Install it by following the instructions at 
+- ### `yt-dlp`
 
-        - ```bash
-          $ python3 -m pip install -U yt-dlp
-          ```
+  A command-line program to download videos and audios from YouTube and other sites. Install it by following the instructions at
 
-        * [https://github.com/yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp/wiki/Installation)
+  - ```bash
+    $ python3 -m pip install -U yt-dlp
+    ```
 
-    - ### `xclip`
-      A command-line utility that can be used to copy and paste text and files to and from the clipboard.
+  [https://github.com/yt-dlp/yt-dlp](https://github.com/yt-dlp/yt-dlp/wiki)
 
-        - ```bash
-          $ sudo apt install xclip
-          ```
+- ### `xclip`
 
-      For Arch/Manjaro linux users
+  A command-line utility that can be used to copy and paste text and files to and from the clipboard.
 
-        - ```bash
-          $ sudo pacman -S xclip
-          ```
+  - ```bash
+    $ sudo apt install xclip
+    ```
 
-        * [https://github.com/astrand/xclip](https://github.com/astrand/xclip)
+  For Arch/Manjaro linux users
+
+  - ```bash
+    $ sudo pacman -S xclip
+    ```
+
+  * [https://github.com/astrand/xclip](https://github.com/astrand/xclip)
+
+## Easy Installation
+
+Simplest method to download and install the script
+
+```bash
+# Download the executable file
+curl -o download https://raw.githubusercontent.com/mr-alham/Video-Audio-downloader-by-ALHAM/main/download.sh
+
+# Move the executable to '/usr/local/bin'
+sudo mv download /usr/local/bin/
+
+# Download utilities
+curl -o download https://raw.githubusercontent.com/mr-alham/Video-Audio-downloader-by-ALHAM/main/download
+
+# Move the data file to '/usr/local/etc,
+sudo mv download /usr/local/etc
+
+# Install dependencies
+download --install
+```
 
 ## How to use
 
@@ -74,7 +97,7 @@ This shell script provides a convenient way to download audio and video files fr
       $ ./script.sh --help
       $ ./script.sh -h
       ```
- 
+
 ## Usage
 
     - Some example how the script can be used.
@@ -82,18 +105,18 @@ This shell script provides a convenient way to download audio and video files fr
       ```bash
       $ ./script.sh --audio --url <url>
       $ ./script.sh -A -u <url>
-  
+
       $ ./script.sh --video --url <url>
       $ ./script.sh -V -u <url>
-  
+
       $ ./script.sh -video-best --url <url>
       $ ./script.sh -Vb -u <url>
-      ```  
+      ```
 
 ## Screenshots
 
-  **Note:** I haven't updated the screenshots for the final code revision.
-  
+**Note:** I haven't updated the screenshots for the final code revision.
+
     **Interactively:** Download video:
 
     ```bash
@@ -113,7 +136,7 @@ This shell script provides a convenient way to download audio and video files fr
 ## Creating an Alias
 
     To use the script as a usual command, you can create an alias. Here's an example:
-    
+
     1. Open the terminal.
     2. Edit the shell configuration file (e.g., `~/.bashrc`, `~/.bash_profile`).
     3. Add the following line at the end of the file:
@@ -128,7 +151,4 @@ This shell script provides a convenient way to download audio and video files fr
 
 ## Contact me
 
-   For any further assistance or inquiries, please feel free to contact me at,
-    - ALHAM
-    - Twitter: [@alham__aa](https://www.twitter.com/@alham__aa)
-    - Email: alham@duck.com
+For any further assistance or inquiries, please feel free to contact me at, - ALHAM - Twitter: [@alham\_\_aa](https://www.twitter.com/@alham__aa) - Email: alham@duck.com
