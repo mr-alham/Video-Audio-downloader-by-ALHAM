@@ -405,6 +405,9 @@ download_video() {
 
 install() {
     # install required dependencies automatically
+
+    echo -e "\n${bold}${blue}${italic}Installing Dpendencies${reset}${green}"
+
     # Get the distribution ID from /etc/os-release
     source /etc/os-release
 
@@ -481,7 +484,6 @@ handle_arguments() {
             help
 
         elif [ "${arg}" == "--install" ]; then
-        echo "install"
             exit_code=$?
             log "script.sh ${arg}"
             install
